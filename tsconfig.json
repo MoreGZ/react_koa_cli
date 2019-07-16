@@ -10,9 +10,7 @@
         "allowJs": true,
         "baseUrl": ".",
         "paths": {
-            "@common/*": ["web/src/common/*"],
-            "@login/*": ["web/src/login/*"],
-            "@app1/*": ["web/src/app1/*"]
+            "@common/*": ["web/src/common/*"]
         }
     },
     "include": [

@@ -2,41 +2,41 @@
  * 组件名
  * @author: georgemo
 */
-import * as React from 'react'
-import { Button, Input, List, Icon, Card, Row, Col } from 'antd'
-import { Utils } from '@common/index'
-import * as _ from 'lodash'
+import * as React from 'react';
+import {
+  Button, Input, List, Icon, Card, Row, Col,
+} from 'antd';
+import { Utils } from '@common/index';
+import * as _ from 'lodash';
 
-const { useEffect, useState } = React
+const { useState } = React;
 
-export default function Component (props: any) {
-  const [ inputValue, setInputValue ] = useState('')
-  const [ list, setList ] = useState([])
+export default function Component() {
+  const [inputValue, setInputValue] = useState('');
+  const [list, setList] = useState([]);
 
   function handleAddTodoItem() {
-    let newList = list.concat([inputValue])
+    const newList = list.concat([inputValue]);
 
-    if(_.isEmpty(inputValue)) {
-      return 
+    if (_.isEmpty(inputValue)) {
+      return;
     }
 
-    setList(newList)
-    setInputValue('')
+    setList(newList);
+    setInputValue('');
   }
 
   function handleRemoveTodoItem(index: number) {
-    console.log(index, index+1)
-    let newList = Utils.deepClone(list)
-    newList.shift(index, index + 1)
-    console.log(newList)
+    const newList = Utils.deepClone(list);
+    newList.shift(index, index + 1);
 
-    setList(newList)
+    setList(newList);
   }
 
   function handleInputChange(e: any) {
-    let currentValue = e.target.value
+    const currentValue = e.target.value;
 
-    setInputValue(currentValue)
+    setInputValue(currentValue);
   }
 
   return (
@@ -44,15 +44,12 @@ export default function Component (props: any) {
       <Card>
         <Row gutter={24}>
           <Col span={16}>
-            <Input 
+            <Input
               value={inputValue}
               onChange={handleInputChange}
               onKeyDown={(e: any) => {
-                console.log(e.charCode, 'charCode')
-                console.log(e.keyCode, 'keyCode')
-                console.log(e.key, 'key')
-                if(e.key == 'Enter') { 
-                  handleAddTodoItem()
+                if (e.key === 'Enter') {
+                  handleAddTodoItem();
                 }
               }}
             />
@@ -63,21 +60,21 @@ export default function Component (props: any) {
         </Row>
       </Card>
       <Card>
-        <List 
+        <List
           dataSource={list}
           bordered
-          renderItem={ (item: any, index: number) => {
-            return (
-              <List.Item style={{ position: 'relative' }}>
-                <span>{item}</span>
-                <Icon type="close" onClick={() => { handleRemoveTodoItem(index) }}
-                  style={{ position: 'absolute', right: 10, top: 16 }}
-                />
-              </List.Item>
-            )
-          } }
+          renderItem={(item: any, index: number) => (
+            <List.Item style={{ position: 'relative' }}>
+              <span>{item}</span>
+              <Icon
+                type="close"
+                onClick={() => { handleRemoveTodoItem(index); }}
+                style={{ position: 'absolute', right: 10, top: 16 }}
+              />
+            </List.Item>
+          )}
         />
       </Card>
     </Card>
-  )
+  );
 }
