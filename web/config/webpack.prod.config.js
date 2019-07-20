@@ -6,7 +6,7 @@ module.exports = {
   ...webpackCommonConfig,
   output: {
     filename: 'js/[name][hash].js',
-    path: path.resolve(__dirname, '../public'),
+    path: path.resolve(__dirname, '../../server/statics'),
   },
   mode: 'production',
   module: {
@@ -40,4 +40,6 @@ module.exports = {
       chunkFilename: '[id].css',
     }),
   ],
+  // 设置信息展示
+  stats: 'minimal',
 };

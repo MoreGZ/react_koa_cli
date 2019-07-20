@@ -2,6 +2,7 @@ const path = require('path');
 const fs = require('fs');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const tsImportPluginFactory = require('ts-import-plugin');
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 
 const sourcePath = path.resolve(__dirname, '../src');
 const entryKeys = fs.readdirSync(sourcePath);
@@ -15,7 +16,7 @@ entryKeys.forEach((value) => {
   if (!commonScriptsEntries.includes(value)) {
     htmlWebpackPlugins.push(new HtmlWebpackPlugin({
       template: './web/config/templete.html',
-      filename: `${value}.html`,
+      filename: `../views/${value}.html`,
       chunks: [...commonScriptsEntries, value],
     }));
   }
@@ -69,5 +70,7 @@ module.exports = {
   },
   plugins: [
     ...htmlWebpackPlugins,
+    // 进度条
+    new ProgressBarPlugin(),
   ],
 };
