@@ -62,11 +62,7 @@ module.exports = {
   optimization: {
     splitChunks: false,
     minimizer: [
-      new TerserWebpackPlugin({
-        parallel: true,
-        terserOptions: { safari10: true },
-        sourceMap: true,
-      }),
+      new TerserWebpackPlugin({}),
       new OptimizeCSSAssetsPlugin({}),
     ],
   },
