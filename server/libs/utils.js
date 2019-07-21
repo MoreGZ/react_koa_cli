@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-export default {
+module.exports = {
   saveFile(file, uploadFilePath, staticPath) {
     return new Promise((resolve, reject) => {
       fs.readFile(file.path, (err, data) => {
